@@ -5,7 +5,7 @@ import HAL.Rand;
 import HAL.GridsAndAgents.Grid2Ddouble;
 import static HAL.Util.*;
 
-public class StochasticNPlayer extends LeniaNPlayer {
+public class StochasticNPlayer extends DeterministicNPlayer {
 
     public static double u0 = 1; // initial density of cells
     public static final double[][] P = new double[][]{{1.0,0.5},{0.9,0.4}}; // payoff matrix

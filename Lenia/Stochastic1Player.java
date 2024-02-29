@@ -5,7 +5,7 @@ import HAL.GridsAndAgents.Grid2Ddouble;
 import static HAL.Util.*;
 import FFT.FFTGrid;
 
-public class Stochastic1Player extends Lenia1Player {
+public class Stochastic1Player extends Deterministic1Player {
 
     public static double Rstar = 2;
     public static double u0 = 1; // initial density of cells
@@ -71,32 +71,21 @@ public class Stochastic1Player extends Lenia1Player {
         // update each pixel in A[0]:
         for (int i = 0; i < N; i++) {
             for (int k = 0; k < A[i].length; k++) {
-                
+
                 // use binomial to add number of cells:
                 double rate = this.GrowthFunction.Eval(U(k))*deltaT;
                 if (rate < 0 ){
                     double rateNeg = -rate;
 
+                    // subtract Ncells from A[i].Get(k) using binomial distribution:
                     int Ncells = rn.Binomial((int)(A[i].Get(k)), rateNeg);
                     A[i].Add(k, -Ncells);
                 }else{
+                    // add Ncells to C-A[i].Get(k) using binomial distribution:
                     int Ncells = rn.Binomial((int)(C-A[i].Get(k)), rate);
                     A[i].Add(k, Ncells);
                 }
-
-//                int Ncells = rn.Binomial((int)A[i].Get(k), rate); // how many cells to add here?
-
-
-
-                // Ncells \in [0, 1, 2, ... ClipMax]
-
-
-                
-                // previous implementation (using Poisson probability) is now depreciated:
-                // add cells at poisson rate:
-                //A[i].Add(k, NPoissonEvents(this.GrowthFunction.Eval(U(k)), deltaT));
-
-                // clip:
+                // clip the value of A[i].Get(k) to be within the range of CLIP[0] and CLIP[1]:
                 A[i].Set(k, Bound(A[i].Get(k),CLIP[0],CLIP[1]));
             }
         }

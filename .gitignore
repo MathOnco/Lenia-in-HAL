@@ -2,9 +2,4 @@
 .DS_Store
 out/**
 *.xml
-data/test.csv
-data/test_A.gif
-data/test_K.gif
-data/test_G.gif
-data/test_U.gif
 Lenia-in-HAL.iml

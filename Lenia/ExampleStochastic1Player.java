@@ -5,10 +5,10 @@ import HAL.Util;
 public class ExampleStochastic1Player extends Stochastic1Player {
 
     // Constants
-    public static double Rstar = 5;
-    public static double gamma = 5.0;
-    public static double L = 0.08;
-    public static double C = 1.0;
+    public static double Rstar = 5; //Neighborhood radius
+    public static double gamma = 5.0; //growth rate
+    public static double L = 0.08; //Allee threshold
+    public static double C = 1.0; //Carrying capacity
 
     // Kernel function
     @Override

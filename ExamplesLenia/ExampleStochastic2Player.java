@@ -1,11 +1,12 @@
-package Lenia;
+package ExamplesLenia;
 
 import HAL.Rand;
 import HAL.Util;
+import Lenia.StochasticNPlayer;
 
-public class ExampleDeterministic2Player extends LeniaNPlayer {
+public class ExampleStochastic2Player extends StochasticNPlayer {
 
-
+    
     public static final double[][] P = new double[][]{{1.0,0.5},{0.9,0.4}};
     //kernel size
     public static final double[][] Rstar = new double[][]{{45.0,5.0},{5.0,45.0}};
@@ -42,14 +43,14 @@ public class ExampleDeterministic2Player extends LeniaNPlayer {
     }
 
     // Constructor
-    public ExampleDeterministic2Player(int sideLength, int nPlayers, double dt, String filename, int scalefactor, boolean[] vis_options, double ClipMax) {
+    public ExampleStochastic2Player(int sideLength, int nPlayers, double dt, String filename, int scalefactor, boolean[] vis_options, int ClipMax) {
         super(filename, sideLength, dt, nPlayers, scalefactor, vis_options, ClipMax);
         this.colors = new int[] {TumorColor, ImmuneColor};
         SetGrowthBars(ClipMax);
     }
 
     // Set initial conditions
-    public void SetInitialCondition(double CarryingCapacity) {
+    public void SetInitialCondition(int CarryingCapacity) {
         Rand rn = new Rand();
         int[] hood = Util.CircleHood(true, 12);
         int H = MapHood(hood, xDim/2, yDim/2);
@@ -72,7 +73,7 @@ public class ExampleDeterministic2Player extends LeniaNPlayer {
     }
 
     // Set growth scale bars
-    public void SetGrowthBars(double ClipMax) {
+    public void SetGrowthBars(int ClipMax) {
         for (int i = 0; i < N; i++) {
             double min = 0;
             double max = 0;
@@ -94,16 +95,16 @@ public class ExampleDeterministic2Player extends LeniaNPlayer {
         // Define the number of players
         int N = 2;
         // Define the maximum value for clipping
-        double ClipMax = 1.0;
+        int ClipMax = 1;
         // Define the time step for simulation
         double deltaT = 0.02;
         // Define the time step for drawing
         double drawDeltaT = 0.5;
         // Define the name of the file for saving data
-        String name = "data/ExampleDeterministic2Player";
+        String name = "data/ExampleStochastic2Player";
 
-        // Create an instance of ExampleDeterministic2Player
-        ExampleDeterministic2Player model = new ExampleDeterministic2Player(side_length, N, deltaT, name, scalefactor, new boolean[]{true,true,true,true}, ClipMax);
+        // Create an instance of Example2Player
+        ExampleStochastic2Player model = new ExampleStochastic2Player(side_length, N, deltaT, name, scalefactor, new boolean[]{true,true,true,true}, ClipMax);
         // Disable displaying average on plot
         model.DISPLAY_AVG_ON_PLOT = false;
         // Disable displaying time on plot

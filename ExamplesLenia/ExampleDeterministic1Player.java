@@ -1,24 +1,26 @@
-package Lenia;
+package ExamplesLenia;
 
 import HAL.Util;
+import Lenia.Deterministic1Player;
 
-public class ExampleStochastic1Player extends Stochastic1Player {
+public class ExampleDeterministic1Player extends Deterministic1Player {
 
-    // Constants
-    public static double Rstar = 5; //Neighborhood radius
-    public static double gamma = 5.0; //growth rate
-    public static double L = 0.08; //Allee threshold
-    public static double C = 1.0; //Carrying capacity
+   // Constants
+   public static double Rstar = 5; //Neighborhood radius
+   public static double gamma = 5.0; //growth rate
+   public static double L = 0.08; //Allee threshold
+   public static double C = 1.0; //Carrying capacity
 
-    // Kernel function
-    @Override
-    public double K(double r) {
-        if (r <= Rstar) {
-            return 1.0;
-        } else {
-            return 0.0;
-        }
-    }
+   // Kernel function
+   @Override
+   public double K(double r) {
+       if (r <= Rstar) {
+           return 1.0;
+       } else {
+           return 0.0;
+       }
+   }
+
 
     // Growth function
     @Override
@@ -26,13 +28,13 @@ public class ExampleStochastic1Player extends Stochastic1Player {
         return gamma * u * (u - L) * (C - u);
     }
 
-    // Constructor
-    public ExampleStochastic1Player(String filename, int side_length, double dt, int scalefactor, int ClipMax) {
-        super(filename, side_length, dt, scalefactor, new boolean[]{true, true, true, true}, ClipMax);
+    public ExampleDeterministic1Player(String filename, int side_length, double dt, int scalefactor, double ClipMax) {
+       super(filename,side_length, dt, scalefactor, new boolean[]{true, true, true, true}, ClipMax);
     }
 
-    // Main method
+
     public static void main(String[] args) {
+
         int side_length = 64; // Length of the simulation domain side
         int scalefactor = 5; // Scale factor for drawing size
         int ClipMax = 1; // Carrying capacity
@@ -41,8 +43,7 @@ public class ExampleStochastic1Player extends Stochastic1Player {
         double drawDeltaT = 0.1; // Timesteps to draw grid at
         String name = "data/test"; // Folder for saving data
 
-        // Create an instance of ExampleStochastic1Player with the specified parameters
-        ExampleStochastic1Player model = new ExampleStochastic1Player(name, side_length, deltaT, scalefactor, ClipMax);
+        ExampleDeterministic1Player model = new ExampleDeterministic1Player(name, side_length, deltaT, scalefactor, ClipMax);
         model.SetupGifSaving(); // Set up saving GIF files
         model.DISPLAY_SCALE_BARS_ON_PLOT = false; // Disable displaying scale bars on the plot
         model.DISPLAY_AVG_ON_PLOT = false; // Disable displaying average on the plot
@@ -61,13 +62,12 @@ public class ExampleStochastic1Player extends Stochastic1Player {
         model.Close(); // Close the model
     }
 
-    // Set initial condition
     public void SetInitialCondition(double CarryingCapacity) {
+
         int[] hood = Util.CircleHood(true, 12);
         int H = MapHood(hood, xDim / 2, yDim / 2);
-
         for (int i = 0; i < H; i++) {
-            this.Set(hood[i], CarryingCapacity);
-        }
+                this.Set(hood[i], CarryingCapacity);
+            }
     }
 }

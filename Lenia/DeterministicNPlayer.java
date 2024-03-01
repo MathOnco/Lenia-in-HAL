@@ -37,12 +37,12 @@ public class DeterministicNPlayer extends LeniaBaseClass implements Iterable<Gri
 
 
     // use the default kernal, growth function.
-    DeterministicNPlayer(String filename, int sideLength, double deltaT, int nPlayers, int scalefactor, int ClipMax) {
+    public DeterministicNPlayer(String filename, int sideLength, double deltaT, int nPlayers, int scalefactor, int ClipMax) {
         this(filename,sideLength,deltaT,nPlayers,scalefactor,new boolean[]{true,true,true,true},ClipMax);
     }
 
     // String filename, int sideLength, double deltaT, int scalefactor, boolean[] vis_options
-    DeterministicNPlayer(String filename, int sideLength, double deltaT, int nPlayers, int scalefactor, boolean[] vis_options, double ClipMax) {
+    public DeterministicNPlayer(String filename, int sideLength, double deltaT, int nPlayers, int scalefactor, boolean[] vis_options, double ClipMax) {
         super(filename,sideLength,deltaT,nPlayers,scalefactor);
         this.KernelFunction = this::K;
         this.GrowthFunction = this::G;

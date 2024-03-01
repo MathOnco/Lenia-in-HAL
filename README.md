@@ -2,7 +2,7 @@
 Repository for Lenia framework, implemented in Hybrid Automata Library (HAL) 
 
 
-Lenia is a cellular automata framework developed [here](https://chakazul.github.io/lenia.html) that offers capabilities for simulating continuous space and time, making it suitable for studying the collective behavior of interacting biological agents, such as individual cells or organisms. Cellular automata are valuable tools for studying the rules governing the behavior of complex systems, including multi-factorial diseases like cancer. This Repository is for Lenia framework, implemented in Hybrid Automata Library (HAL) [here](https://github.com/MathOnco/HAL?tab=readme-ov-file).
+Lenia is a cellular automata framework developed [here](https://chakazul.github.io/lenia.html) that offers capabilities for simulating continuous space and time, making it suitable for studying the collective behavior of interacting biological agents, such as individual cells or organisms. Cellular automata are valuable tools for studying the rules governing the behavior of complex systems, including multi-factorial diseases like cancer. This Repository is for the Lenia framework, implemented in Hybrid Automata Library ([HAL])(https://github.com/MathOnco/HAL?tab=readme-ov-file).
 
 ## Overview
 

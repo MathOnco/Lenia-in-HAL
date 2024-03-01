@@ -1,12 +1,11 @@
 # Lenia-in-HAL
-Repository for Lenia framework, implemented in Hybrid Automata Library (HAL) 
+Repository for Lenia framework, implemented in Hybrid Automata Library (HAL), which can be downloaded [here](https://github.com/mathonco/hal). Below we implement the "Lenia" modeling framework in HAL v1.1.0.
 
-
-Lenia is a cellular automata framework developed [here](https://chakazul.github.io/lenia.html) that offers capabilities for simulating continuous space and time, making it suitable for studying the collective behavior of interacting biological agents, such as individual cells or organisms. Cellular automata are valuable tools for studying the rules governing the behavior of complex systems, including multi-factorial diseases like cancer. This Repository is for the Lenia framework, implemented in Hybrid Automata Library [(HAL)](https://github.com/MathOnco/HAL?tab=readme-ov-file).
+Lenia is a cellular automata framework developed [here](https://chakazul.github.io/lenia.html) that offers capabilities for simulating cellular automata that have continuous space and time components, making it suitable for studying the collective behavior of interacting biological agents, such as individual cells or organisms. Cellular automata are valuable tools for studying the rules governing the behavior of complex systems, including multi-factorial diseases like cancer. 
 
 ## Overview
 
- Lenia-in-HAL is developed at the EDIT lab at the H. Lee Moffitt Cancer Center and Research Institute. It provides various features essential for cancer modeling, including:
+Lenia-in-HAL is developed at [the EDIT lab](https://labpages.moffitt.org/westj/) at the H. Lee Moffitt Cancer Center and Research Institute. It provides various features essential for cancer modeling, including:
 
 - Cellular replication
 - Growth
@@ -25,17 +24,49 @@ Lenia is designed to recapitulate various models commonly used in cancer researc
 
 ## Usage
 
-Lenia is easy to implement and supports single or multiple players. Users can define growth functions and various kernel sizes/functions for spatial interaction. More details on using Lenia in cancer modeling can be found in [this paper](https://www.biorxiv.org/content/10.1101/2024.01.10.575036v2.abstract).
+Lenia is easy to implement and supports single or multiple players (cell types). Users can define growth functions and various kernel sizes/functions for spatial interaction. More details on using Lenia in cancer modeling can be found in [this paper](https://www.biorxiv.org/content/10.1101/2024.01.10.575036v2.abstract).
 
-## Contributing
+There are two steps to defining and implementing a model in Lenia: 1) define the Growth function, `G(u)` and 2) define the kernel of cell interaction, `K(r)`.
 
-Contributions to Lenia are welcome! If you're interested in contributing, please ...
+For example, we implement logistic growth with an Allee effect by overriding the G function in ExampleDeterministic1Player.java:
+
+```
+    // Growth function
+    @Override
+    public double G(double u) {
+        return gamma * u * (u - L) * (C - u);
+    }
+```
+
+where `gamma`, `L`, and `C` are constants. This function defines the growth rate of each lattice location as a function of `u`, the density potential. Density potential is determined by the weighted sum of the density of a focal cell's neighborhood, as defined by the interaction kernel. For example, we can define the neighborhood as the cells within a radius of `Rstar` as follows:
+
+```
+    @Override
+    public double K(double r) {
+        if (r <= Rstar) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+```
+
+Thus, each cell within a radius of `Rstar` will be equally weighted. If neighborhood is empty then `u = 0`, if maximum capacity then `u = 1`.
+
+## Examples
+Four examples are provided in the Examples folder. We recommend starting here, and editing the G and K functions of these examples for your own purposes.
+
+- ExampleDeterministic1Player.java
+- ExampleDeterministic2Player.java
+- ExampleStochastic1Player.java
+- ExampleStochastic2Player.java
+
 
 ## License
 
-Lenia is open-source software licensed under the MIT License ??
+Lenia is open-source software licensed under the MIT License.
 
-## Contact
+## Contributing & Contact
 
-For any questions, feedback, or support, please contact [the EDIT lab](https://labpages.moffitt.org/westj/members/) at the H. Lee Moffitt Cancer Center and Research Institute.
+Contributions to Lenia are welcome! If you're interested in contributing, please fork this repository or contact us directly. For any questions, feedback, or support, please contact [the EDIT lab](https://labpages.moffitt.org/westj/) at the H. Lee Moffitt Cancer Center and Research Institute.
 

@@ -14,10 +14,13 @@ authors:
   - given-names: Sadegh
     family-names: Marzban
     email: Sadegh.Marzban@moffitt.org
+  - given-names: Rafael
+    family-names: Bravo
+    email: Rafael.Bravo@moffitt.org
 identifiers:
   - type: url
     value: >-
-      https://www.biorxiv.org/content/10.1101/2024.01.10.575036v2.abstract
+      https://github.com/mathonco/lenia-in-hal
 abstract: >-
   Lenia, a cellular automata framework used in artificial
   life, provides a natural setting to design, implement, and

@@ -39,7 +39,7 @@ public class ExampleStochastic1Player extends Stochastic1Player {
         int ClipMax = 1; // Carrying capacity
 
         double deltaT = 0.02; // Timestep
-        double drawDeltaT = 0.1; // Timesteps to draw grid at
+        double drawDeltaT = 0.5; // Timesteps to draw grid at
         String name = "data/test"; // Folder for saving data
 
         // Create an instance of ExampleStochastic1Player with the specified parameters

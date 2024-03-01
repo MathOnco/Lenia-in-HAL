@@ -3,6 +3,11 @@ Repository for Lenia framework, implemented in Hybrid Automata Library (HAL), wh
 
 Lenia is a cellular automata framework developed [here](https://chakazul.github.io/lenia.html) that offers capabilities for simulating cellular automata that have continuous space and time components, making it suitable for studying the collective behavior of interacting biological agents, such as individual cells or organisms. Cellular automata are valuable tools for studying the rules governing the behavior of complex systems, including multi-factorial diseases like cancer. 
 
+Below is an image (originally appearing here) that describes Lenia. Lenia as a cancer model: (A) density of cells at each lattice location. (B) the interaction kernel specifies the nature of interaction of cells depending on their distance form each other. (C) the density potential, interpreted as a weighted average of interactions at each lattice location, is calculated as the convolution of A(x) and K(x). (D) the growth field calculated by applying a growth map to the density potential. (E) list of characteristics possible to produce in lenia by varying the kernel and the growth function. (F) adding a fraction of the growth field at each time step to the cell density, forms the Lenia update rule.
+
+![Figure](figure.png "Figure")
+
+
 ## Overview
 
 Lenia-in-HAL is developed at [the EDIT lab](https://labpages.moffitt.org/westj/) at the H. Lee Moffitt Cancer Center and Research Institute. It provides various features essential for cancer modeling, including:

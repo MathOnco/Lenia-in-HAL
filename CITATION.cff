@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Lenia-in-HAL
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jeffrey
+    family-names: West
+    email: Jeffrey.West@moffitt.org
+  - given-names: Sadegh
+    family-names: Marzban
+    email: Sadegh.Marzban@moffitt.org
+identifiers:
+  - type: url
+    value: >-
+      https://www.biorxiv.org/content/10.1101/2024.01.10.575036v2.abstract
+abstract: >-
+  Lenia, a cellular automata framework used in artificial
+  life, provides a natural setting to design, implement, and
+  analyze mathematical models of cancer progression and
+  treatment. Lenia’s suitability as a cancer model is
+  derived from the strong parallels between artificial life
+  and cancer evolution: morphogenesis, homeostasis,
+  motility, reproduction, growth, stimuli response,
+  evolvability, and adaptation. Historically, agent-based
+  models of cancer progression have been constructed with
+  rules that govern birth, death, and migration based on the
+  local availability of space, with attempts to map local
+  rules to emergent global growth dynamics. In contrast,
+  Lenia provides a flexible framework for considering a
+  spectrum of local (cell-scale) to global (tumor-scale)
+  dynamics by defining an interaction kernel governing
+  density-dependent growth dynamics. Lenia can recapitulate
+  a range of cancer model classifications including local or
+  global, deterministic or stochastic, non-spatial or
+  spatial, single or multi-population, and off or
+  on-lattice. Lenia is subsequently used to develop
+  data-informed models of 1) single-population growth
+  dynamics, 2) multi-population cell-cell competition
+  models, and 3) cell migration or chemotaxis.
+date-released: '2024-03-02'

@@ -5,7 +5,7 @@ import HAL.Rand;
 import HAL.GridsAndAgents.Grid2Ddouble;
 import static HAL.Util.*;
 
-public class StochasticNPlayer extends DeterministicNPlayer {
+public class StochasticNPlayer extends LeniaNPlayer {
 
     public static double u0 = 1; // initial density of cells
     public static final double[][] P = new double[][]{{1.0,0.5},{0.9,0.4}}; // payoff matrix
@@ -35,7 +35,7 @@ public class StochasticNPlayer extends DeterministicNPlayer {
     // design your kernal function
     @Override
     public double K(int i,int j,double r) {
-        if (r < Rstar[i][j]) {
+        if (r <= Rstar[i][j]) {
             return 1;
         } else {
             return 0;
@@ -74,21 +74,23 @@ public class StochasticNPlayer extends DeterministicNPlayer {
                 currFftField.ifft2();
             }
         }
-        // update each pixel in A[0]:
         for (int iPlayer = 0; iPlayer < N; iPlayer++) {
             for (int k = 0; k < A[iPlayer].length; k++) {
 
                 SetUiScratch(iPlayer,k);
 
-                // use binomial to add number of cells:
+                // Use binomial distribution to determine the number of cells to add or remove
                 double rate = this.GrowthFunction.Eval(iPlayer,Uscratch)*deltaT;
-                int Ncells = rn.Binomial((int)A[iPlayer].Get(k), rate); // how many cells to add here?
-                A[iPlayer].Add(k, Ncells);
-
-
-                // previous implementation (using Poisson probability) is now depreciated:
-                // add cells at poisson rate:
-                //A[iPlayer].Add(k, NPoissonEvents(this.GrowthFunction.Eval(iPlayer,Uscratch), deltaT));
+                if (rate < 0) {
+                    // If the growth rate is negative, remove cells
+                    double rateNeg = -rate;
+                    int Ncells = rn.Binomial((int) A[iPlayer].Get(k), rateNeg);
+                    A[iPlayer].Add(k, -Ncells); // Remove cells
+                } else {
+                    // If the growth rate is positive, add cells
+                    int Ncells = rn.Binomial((int) (C - A[iPlayer].Get(k)), rate);
+                    A[iPlayer].Add(k, Ncells); // Add cells
+                }
 
                 // clip:
                 A[iPlayer].Set(k, Bound(A[iPlayer].Get(k),CLIP[0],CLIP[1]));
@@ -117,7 +119,7 @@ public class StochasticNPlayer extends DeterministicNPlayer {
                 for (int j = 0; j < N; j++) {
                     this.Set(0,x,y,x1);
                     this.Set(1,x,y,x2);
-                }                
+                }
             }
         }
     }
@@ -136,7 +138,7 @@ public class StochasticNPlayer extends DeterministicNPlayer {
             SetGrowthScale(i, min, max);
         }
     }
-    
+
     public static void main(String[] args) {
 
         int side_length = 64; // length of the side of simulation domain
@@ -146,10 +148,10 @@ public class StochasticNPlayer extends DeterministicNPlayer {
 
         // double[] Rvec = new double[]{1000};
 
-        int CarryingCapacity = 10;
+        int CarryingCapacity = 1;
         int Nplayers = 2;
 
-        
+
         String filename = "data/Stochastic/stochasticNPlayer";
 
         StochasticNPlayer model=new StochasticNPlayer(filename,side_length,deltaT, Nplayers,scalefactor,new boolean[]{true,true,true,true}, CarryingCapacity);
@@ -163,9 +165,9 @@ public class StochasticNPlayer extends DeterministicNPlayer {
 
         // set up an initial condition (1 cell in the center of the domain)
 
-        
-        
-        while (model.GetTime() < 300.0) {            
+
+
+        while (model.GetTime() < 300.0) {
             model.Output(); // output must be called before Update()
             model.Update(); // increment model.time
             if (model.GetTick() % (int)(1.0/deltaT) == 0) {
@@ -173,12 +175,12 @@ public class StochasticNPlayer extends DeterministicNPlayer {
             }
         }
         model.Close();
-            
-        
+
+
         return;
-        
+
     }
-    
+
 
 }
 

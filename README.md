@@ -5,9 +5,8 @@ Lenia is a cellular automata framework developed [here](https://chakazul.github.
 
 Below is an image (originally appearing [here](https://www.biorxiv.org/content/10.1101/2024.01.10.575036v2.abstract)) that describes Lenia. Lenia as a cancer model: 
 
-(A) Lenia artificial life virtual creatures, reproduced from [Chan, 2018](https://arxiv.org/abs/1812.05433). (B) List of characteristics possible to produce in Lenia by varying the growth dynamics function (C) or the interaction kernel function (D). (E) An example snapshot of a simulation shows the density of cells at each lattice location where the interaction kernel (F) specifies the nature of interaction of cells depending on their distance from each other. (G) The density potential, interpreted as a weighted average of interactions at each lattice location, is calculated as the convolution of A(x) and K(x). (H) the growth field calculated by applying a growth map to the density potential. (I) adding a fraction of the growth field at each time step to the cell density, forms the Lenia update rule.
-
 ![Figure](figure.png "Figure")
+(A) Lenia artificial life virtual creatures, reproduced from [Chan, 2018](https://arxiv.org/abs/1812.05433). (B) List of characteristics possible to produce in Lenia by varying the growth dynamics function (C) or the interaction kernel function (D). (E) An example snapshot of a simulation shows the density of cells at each lattice location where the interaction kernel (F) specifies the nature of interaction of cells depending on their distance from each other. (G) The density potential, interpreted as a weighted average of interactions at each lattice location, is calculated as the convolution of A(x) and K(x). (H) the growth field calculated by applying a growth map to the density potential. (I) adding a fraction of the growth field at each time step to the cell density, forms the Lenia update rule.
 
 
 ## Overview
@@ -59,6 +58,8 @@ where `gamma`, `L`, and `C` are constants. This function defines the growth rate
 ```
 
 Thus, each cell within a radius of `Rstar` will be equally weighted. If neighborhood is empty then `u = 0`, if maximum capacity then `u = 1`.
+
+For help getting started with HAL, we recommend checking out the manual [halloworld.org/setup](halloworld.org/setup) for information on how to setup HAL on your operating system.
 
 ## Examples
 Four examples are provided in the Examples folder. We recommend starting here, and editing the G and K functions of these examples for your own purposes.

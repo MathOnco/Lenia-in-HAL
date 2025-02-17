@@ -59,7 +59,7 @@ where `gamma`, `L`, and `C` are constants. This function defines the growth rate
 
 Thus, each cell within a radius of `Rstar` will be equally weighted. If neighborhood is empty then `u = 0`, if maximum capacity then `u = 1`.
 
-For help getting started with HAL, we recommend checking out the manual [halloworld.org/setup](halloworld.org/setup) for information on how to setup HAL on your operating system.
+For help getting started with HAL, we recommend checking out the manual [halloworld.org/setup](https://halloworld.org/setup) for information on how to setup HAL on your operating system.
 
 ## Examples
 Four examples are provided in the Examples folder. We recommend starting here, and editing the G and K functions of these examples for your own purposes.
